@@ -1,0 +1,66 @@
+//Programa que ordena mediante intercambio directo (método de la burbuja) los valores de un vector.
+#include <iostream> //Incluimos librería iostream que permite la entrada por teclado y la salida por pantalla.
+using namespace std; //Sentencia obligatoria.
+
+//Creación de la función.
+
+/*
+ * @brief Módulo que ordena los valores de un vector mediante el método de la burbuja.
+ * @param double v[], int util_v Vector con los elementos introducidos y el tamaño útil del vector.
+ * @return void No devuelve ningún valor puesto que cambia los valores en el vector pasado por referencia.
+ * @pre v[util_v].
+ * @ver 1.0.
+ * @author Josedm92.
+ */
+void Ord_Burbuja (double v[], int util_v) {
+	bool cambio=true;
+
+	for (int izda=0; izda<util_v-1 && cambio; izda++) {
+		cambio=false;
+
+		for (int i=util_v-1; i>izda; i--) {
+			if (v[i]<v[i-1]) {
+				cambio=true;
+
+				double aux=v[i];
+				v[i]=v[i-1];
+				v[i-1]=aux;
+			}
+		}
+	}
+}
+
+//Inicio del programa
+int main () {
+	//Declaración de variables.
+	const int DIM_V=100;
+	double v[DIM_V]; 
+	int util_v;
+
+	//Pedimos por pantalla el tamaño del vector.
+	do {
+		cout << "Introduzca el tamaño del vector a utilizar (Entre 1 y " << DIM_V << "): ";
+		cin >> util_v;
+	} while (util_v<1 || util_v>DIM_V);
+
+	//Pedimos por pantalla los valores del vector.
+	for (int i=0; i<util_v; i++) {
+		cout << "Introduzca el número " << i+1 << ": ";
+		cin >> v[i];
+	}
+	
+	cout << "El vector introducido es: ";
+	for (int i=0; i<util_v; i++) {
+		cout << v[i] << " ";
+		} 
+	cout << endl;
+	
+	Ord_Burbuja(v,util_v);
+
+	cout << "El vector ordenado es: ";
+	for (int i=0; i<util_v; i++) {
+		cout << v[i] << " ";
+		} 
+	cout << endl;
+	
+}
